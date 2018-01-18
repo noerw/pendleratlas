@@ -36,9 +36,9 @@ wget "http://geois.arbeitsagentur.de/arcgis/rest/services/Gebietsstrukturen/MapS
 python fetch-kreise.py > kreise.json
 ```
 
-> Es stellt sich heraus, dass die von der PendlerDaten API erwarteten Kreis IDs das auf 5-stellen gekuerzte Feld `KN` der Verwaltungsgrenzen (`dvg:nw_dvg2_krs`) des geodatenzentrums sind. Falls also die exakte Geometrie der Kreise benoetigt wird, kann man das sicherlich mit dem offiziellen DVG layer verschneiden.
+> Es stellt sich heraus, dass die von der PendlerDaten API erwarteten Kreis IDs aus dem Attribut `RS` der [Verwaltungsgrenzen (`vg250_krs`) des Geodatenzentrums][Verwaltungsgrenzen] sind. Falls also die exakte Geometrie der Kreise benoetigt wird, kann man das sicherlich auch diesen Datensatz als Grundlage wahlen.
 
-[Verwaltungsgrenzen]: https://www.bkg.bund.de/DE/Produkte-und-Services/Shop-und-Downloads/Digitale-Geodaten/Verwaltungsgebiete-Verwaltungsgrenzen/verwaltungsgebiete.html
+[Verwaltungsgrenzen]: https://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=14&gdz_user_id=0
 
 ### Pendlerdaten
 Das Skript `fetch-pendler.py` erwartet die Gemeindegrenzen `kreise.json` im selben Ordner, und fragt die API der Arbeitsagentur fuer jeden Kreis ab.
