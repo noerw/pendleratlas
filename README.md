@@ -1,6 +1,6 @@
 # Pendleratlas Scraper
 
-Die Bundesagentur fuer Arbeit stellt die Pendlerstatistik von 2016 als
+Die Bundesagentur fuer Arbeit stellt die Pendlerstatistik von 2016 - 2017 als
 interaktive Karte auf ihrer [Website][Pendleratlas] bereit.
 
 Diese Statistik bietet die detailliertesten Informationen zu Pendlern auf Bundesebene welche ich finden konnte:
@@ -42,6 +42,7 @@ python fetch-kreise.py > kreise.json
 
 ### Pendlerdaten
 Das Skript `fetch-pendler.py` erwartet die Gemeindegrenzen `kreise.json` im selben Ordner, und fragt die API der Arbeitsagentur fuer jeden Kreis ab.
+Das Jahr kann im Kopf des Skripts gewaehlt werden, Daten sind jeweils nur fuer den Juni verfuegbar.
 Dies dauert ne ganze Weile, da die API langsam und instabil ist. Fehlgeschlagene Requests werden wiederholt bis alles da ist.
 Das Skript augmentiert das zuvor bezogene `kreise.json` und speichert als `pendler.json`
 

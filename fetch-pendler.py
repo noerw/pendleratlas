@@ -1,8 +1,9 @@
-import requests
+import sys
 import json
+import requests
 
 pendlerUrl = 'https://statistik.arbeitsagentur.de/PendlerData'
-pendlerParams = { 'year_month' : '201606', 'view' : 'renderPendler' }
+pendlerParams = { 'year_month' : '201706', 'view' : 'renderPendler' }
 
 f = open('kreise.json', 'r')
 kreise = f.read()
@@ -16,7 +17,7 @@ while not all('auspendler' in f['properties'] for f in geojson['features']):
         if 'auspendler' in f['properties']:
             continue
         else:
-            print('fetching', f['properties']['ID'], i)
+            print 'fetching', f['properties']['ID'], i
 
         pendlerParams['regionInd'] = f['properties']['ID']
 
@@ -29,8 +30,10 @@ while not all('auspendler' in f['properties'] for f in geojson['features']):
             r = requests.get(pendlerUrl, params=pendlerParams)
             f['properties']['auspendler'] = json.loads(r.text)
 
+        except KeyboardInterrupt:
+            sys.exit(1)
         except:
-            print('errored at', i)
+            print 'errored at', i
             continue
 
 f = open('pendler.json', 'w')
